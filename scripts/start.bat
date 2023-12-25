@@ -1,0 +1,3 @@
+docker-compose up -d
+set /p DUMMY=Hit ENTER to continue...
+docker-compose down

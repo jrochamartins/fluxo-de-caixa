@@ -1,0 +1,6 @@
+@FluxoDeCaixa.Api_HostAddress = http://localhost:5277
+
+GET {{FluxoDeCaixa.Api_HostAddress}}/entries/
+Accept: application/json
+
+###
