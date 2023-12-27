@@ -1,28 +1,51 @@
 # Use root/example as user/password credentials
-version: '3.1'
+version: '3.8'
 
 services:
-
-    mongo:
-        image: mongo
-        restart: always
+    # Aplicação ASP.NET
+    webapp:
+        # restart: always
+        image: fluxo-caixa:latest  # Substitua pelo nome da sua imagem ASP.NET
+        build:
+            context: ..
         ports:
-            - "27017:27017"
+            - 5000:5000
+        depends_on:
+            - mongodb
+            - rabbitmq
+        environment:
+            ASPNETCORE_ENVIRONMENT: Development
+            ASPNET_MONGO_CONNECTION_STRING: mongodb://root:example@mongodb:27017
+            ASPNET_MONGO_DATABASE: CASH-FLOW
+            ASPNET_RABBITMQ_CONNECTION_STRING: rabbitmq
+            ASPNET_RABBITMQ_QUEUE: CASH-FLOW-ENTRIES
+            ASPNETCORE_HTTP_PORTS: 5000
 
-    # admin : pass
+  # Banco de Dados MongoDB
+    mongodb:
+        image: mongo:latest
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: example
+        ports:
+            - 27017:27017
+
     mongo-express:
         image: mongo-express
         restart: always
         ports:
             - 8081:8081
+        depends_on:
+            - mongodb    
 
-    # guest : guest
+  # Sistema de Mensageria RabbitMQ
     rabbitmq:
         image: rabbitmq:3-management
-        hostname: local-rabbitmq
-        ports:
-            - "5672:5672"
-            - "15672:15672"
-        
-        
-    
+        restart: always
+        environment:
+            RABBITMQ_DEFAULT_USER: guest
+            RABBITMQ_DEFAULT_PASS: guest
+        ports:            
+            - 5672:5672
+            - 15672:15672

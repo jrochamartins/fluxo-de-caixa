@@ -13,16 +13,16 @@ namespace FluxoDeCaixa.Queue
         public QueueContext(IOptionsMonitor<QueueContextOptions> optionsAccessor)
         {
             _options = optionsAccessor.CurrentValue;
-            var factory = new ConnectionFactory() { HostName = _options.QueueHostName };
+            var factory = new ConnectionFactory() { HostName = _options.ASPNET_RABBITMQ_CONNECTION_STRING };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
-            _channel.QueueDeclare(queue: _options.QueueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
+            _channel.QueueDeclare(queue: _options.ASPNET_RABBITMQ_QUEUE, durable: false, exclusive: false, autoDelete: false, arguments: null);
         }
 
         public void Publish(byte[] message, string exchange = "") =>
             _channel.BasicPublish(
                 exchange: exchange,
-                routingKey: _options.QueueName,
+                routingKey: _options.ASPNET_RABBITMQ_QUEUE,
                 basicProperties: null,
                 body: message);
 
@@ -30,7 +30,7 @@ namespace FluxoDeCaixa.Queue
            new(_channel);
 
         public void RegisterConsumer(IBasicConsumer consumer) =>
-            _channel.BasicConsume(queue: _options.QueueName, autoAck: true, consumer: consumer);
+            _channel.BasicConsume(queue: _options.ASPNET_RABBITMQ_QUEUE, autoAck: true, consumer: consumer);
 
         public void Dispose()
         {

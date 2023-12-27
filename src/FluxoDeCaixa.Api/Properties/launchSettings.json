@@ -1,29 +1,19 @@
 {
     "profiles": {
-        "https": {
+        "http": {
             "commandName": "Project",
             "launchBrowser": true,
             "launchUrl": "swagger",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "DatabaseConnection": "mongodb://localhost",
-                "DatabaseName": "CASH-FLOW",
-                "QueueHostName": "localhost",
-                "QueueName": "CASH-FLOW-ENTRIES"
+                "ASPNET_MONGO_CONNECTION_STRING": "mongodb://root:example@localhost:27017",
+                "ASPNET_MONGO_DATABASE": "CASH-FLOW",
+                "ASPNET_RABBITMQ_CONNECTION_STRING": "localhost",
+                "ASPNET_RABBITMQ_QUEUE": "CASH-FLOW",
+                "ASPNETCORE_HTTP_PORTS": "5000"
             },
             "dotnetRunMessages": true,
-            "applicationUrl": "https://localhost:7238;http://localhost:5277"
-        },
-        "Docker": {
-            "commandName": "Docker",
-            "launchBrowser": true,
-            "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
-            "environmentVariables": {
-                "ASPNETCORE_HTTPS_PORTS": "8081",
-                "ASPNETCORE_HTTP_PORTS": "8080"
-            },
-            "publishAllPorts": true,
-            "useSSL": true
+            "applicationUrl": "http://localhost:5000"
         }
     },
     "$schema": "http://json.schemastore.org/launchsettings.json"

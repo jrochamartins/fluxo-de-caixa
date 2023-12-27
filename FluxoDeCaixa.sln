@@ -17,7 +17,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{E559
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3DD2E2AC-9C97-4C37-972E-125D4DE0CA33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoDeCaixa.Queue", "src\FluxoDeCaixa.Queue\FluxoDeCaixa.Queue.csproj", "{24CAE3BB-ECDB-46A1-8FAB-204ED6E272A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Queue", "src\FluxoDeCaixa.Queue\FluxoDeCaixa.Queue.csproj", "{24CAE3BB-ECDB-46A1-8FAB-204ED6E272A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{798DB9F6-CD80-4748-86D9-0504A51E6B3E}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
