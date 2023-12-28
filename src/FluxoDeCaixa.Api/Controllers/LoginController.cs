@@ -14,7 +14,7 @@ namespace FluxoDeCaixa.Api.Controllers
     public class LoginController(INotifier notifier, IConfiguration configuration) : MainController(notifier)
     {
         [HttpPost()]
-        public ActionResult<string> Login([FromBody] LoginPostRequest request)
+        public ActionResult<string> Login([FromBody] PostLoginRequest request)
         {
             var key = configuration["JWT_KEY"];
             if (string.IsNullOrEmpty(key))

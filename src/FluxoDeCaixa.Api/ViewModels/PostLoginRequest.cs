@@ -1,6 +1,6 @@
 ﻿namespace FluxoDeCaixa.Api.ViewModels
 {
-    public class LoginPostRequest
+    public class PostLoginRequest
     {
         public string? User { get; set; }
     }
