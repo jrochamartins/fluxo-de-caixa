@@ -1,8 +1,5 @@
 using FluxoDeCaixa.Api.Configurations;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using System.Text;
+using Serilog;
 
 namespace FluxoDeCaixa.Api
 {
@@ -12,16 +9,20 @@ namespace FluxoDeCaixa.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Host.UseSerilog((context, configuration) =>
+                configuration.ReadFrom.Configuration(context.Configuration));
+
             builder
                 .ConfigureDependencies()
                 .ConfigureJwtAuthentication();
 
-            var app = builder.Build();            
+            var app = builder.Build();
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseSerilogRequestLogging();
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();

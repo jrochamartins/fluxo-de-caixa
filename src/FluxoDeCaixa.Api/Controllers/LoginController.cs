@@ -16,6 +16,8 @@ namespace FluxoDeCaixa.Api.Controllers
         [HttpPost()]
         public ActionResult<string> Login([FromBody] LoginPostRequest request)
         {
+            logger.LogInformation("Iniciando pedido de login");
+
             var key = configuration["JWT_KEY"];
             if (string.IsNullOrEmpty(key))
             {
