@@ -1,22 +1,25 @@
 version: '3.8'
 
 services:
-    # webapp:
-    #     image: fluxo-caixa:latest
-    #     build:
-    #         context: ..
-    #     ports:
-    #         - 5000:5000
-    #     depends_on:
-    #         - mongodb
-    #         - rabbitmq
-    #     environment:
-    #         ASPNETCORE_ENVIRONMENT: Development
-    #         ASPNET_MONGO_CONNECTION_STRING: mongodb://root:example@mongodb:27017
-    #         ASPNET_MONGO_DATABASE: CASH-FLOW
-    #         ASPNET_RABBITMQ_CONNECTION_STRING: rabbitmq
-    #         ASPNET_RABBITMQ_QUEUE: CASH-FLOW-ENTRIES
-    #         ASPNETCORE_HTTP_PORTS: 5000
+    webapp:
+        image: fluxo-caixa:latest
+        restart: always
+        build:
+            context: ..
+        ports:
+            - 5000:5000
+        depends_on:
+            - mongodb
+            - rabbitmq
+        environment:
+            ASPNETCORE_ENVIRONMENT: Development
+            ASPNET_MONGO_CONNECTION_STRING: mongodb://root:example@mongodb:27017
+            ASPNET_MONGO_DATABASE: CASH-FLOW
+            ASPNET_RABBITMQ_CONNECTION_STRING: rabbitmq
+            ASPNET_RABBITMQ_QUEUE: CASH-FLOW-ENTRIES
+            ASPNETCORE_HTTP_PORTS: 5000
+            JWT_KEY: B5BF91AD-67B5-4D10-9315-3B0AEF4FADD9
+            JWT_USER: admin
 
     mongodb:
         image: mongo:latest
