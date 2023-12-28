@@ -8,7 +8,7 @@ using System.Net;
 namespace FluxoDeCaixa.Api.Controllers
 {
     [Route("[controller]")]
-    public class EntriesController(ILogger<EntriesController> logger, INotifier notifier, IMapper mapper, IEntriesService entriesService) :
+    public class EntriesController(INotifier notifier, IMapper mapper, IEntriesService entriesService) :
         MainController(notifier)
     {
         [HttpPost]

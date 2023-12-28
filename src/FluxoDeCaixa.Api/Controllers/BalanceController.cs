@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FluxoDeCaixa.Api.Controllers
 {
     [Route("[controller]")]
-    public class BalanceController(ILogger<BalanceController> logger, INotifier notifier, IDailyBalanceRepository dailyBalanceRepository) :
+    public class BalanceController(INotifier notifier, IDailyBalanceRepository dailyBalanceRepository) :
         MainController(notifier)
     {
         [HttpGet()]

@@ -11,13 +11,11 @@ namespace FluxoDeCaixa.Api.Controllers
 {
     [AllowAnonymous]
     [Route("[controller]")]
-    public class LoginController(INotifier notifier, ILogger<LoginController> logger, IConfiguration configuration) : MainController(notifier)
+    public class LoginController(INotifier notifier, IConfiguration configuration) : MainController(notifier)
     {
         [HttpPost()]
         public ActionResult<string> Login([FromBody] LoginPostRequest request)
         {
-            logger.LogInformation("Iniciando pedido de login");
-
             var key = configuration["JWT_KEY"];
             if (string.IsNullOrEmpty(key))
             {
