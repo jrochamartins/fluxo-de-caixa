@@ -10,7 +10,9 @@
                 "ASPNET_MONGO_DATABASE": "CASH-FLOW",
                 "ASPNET_RABBITMQ_CONNECTION_STRING": "localhost",
                 "ASPNET_RABBITMQ_QUEUE": "CASH-FLOW",
-                "ASPNETCORE_HTTP_PORTS": "5000"
+                "ASPNETCORE_HTTP_PORTS": "5000",
+                "JWT_KEY": "B5BF91AD-67B5-4D10-9315-3B0AEF4FADD9",
+                "JWT_USER": "admin"
             },
             "dotnetRunMessages": true,
             "applicationUrl": "http://localhost:5000"

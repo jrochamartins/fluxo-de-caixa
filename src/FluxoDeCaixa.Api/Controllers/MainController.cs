@@ -8,10 +8,8 @@ namespace FluxoDeCaixa.Api.Controllers
     [ApiController]
     public abstract class MainController(INotifier notifier) : ControllerBase
     {
-        private readonly INotifier _notifier = notifier;
-
         protected bool IsValidOperation() =>
-            !_notifier.HasNotifications();
+            !notifier.HasNotifications();
 
         protected ActionResult CustomResponse(HttpStatusCode statusCode = HttpStatusCode.OK, object? result = null)
         {
@@ -20,7 +18,7 @@ namespace FluxoDeCaixa.Api.Controllers
 
             return BadRequest(new
             {
-                errors = _notifier.GetNotifications().Select(x => x.Message)
+                errors = notifier.GetNotifications().Select(x => x.Message)
             });
         }
 
@@ -44,6 +42,6 @@ namespace FluxoDeCaixa.Api.Controllers
         }
 
         protected void AddNotification(string message) =>
-            _notifier.AddNotification(message);
+            notifier.AddNotification(message);
     }
 }

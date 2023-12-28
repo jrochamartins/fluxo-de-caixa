@@ -1,4 +1,8 @@
 using FluxoDeCaixa.Api.Configurations;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace FluxoDeCaixa.Api
 {
@@ -7,24 +11,22 @@ namespace FluxoDeCaixa.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.ConfigureDependencies();
 
-            var app = builder.Build();
+            builder
+                .ConfigureDependencies()
+                .ConfigureJwtAuthentication();
 
-            app.UseRabbitListener();
-
-            // Configure the HTTP request pipeline.
+            var app = builder.Build();            
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
-            //app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.MapControllers();
+
+            app.UseRabbitListener();
 
             app.Run();
         }

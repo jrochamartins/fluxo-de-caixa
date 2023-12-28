@@ -1,27 +1,23 @@
-# Use root/example as user/password credentials
 version: '3.8'
 
 services:
-    # Aplicação ASP.NET
-    webapp:
-        # restart: always
-        image: fluxo-caixa:latest  # Substitua pelo nome da sua imagem ASP.NET
-        build:
-            context: ..
-        ports:
-            - 5000:5000
-        depends_on:
-            - mongodb
-            - rabbitmq
-        environment:
-            ASPNETCORE_ENVIRONMENT: Development
-            ASPNET_MONGO_CONNECTION_STRING: mongodb://root:example@mongodb:27017
-            ASPNET_MONGO_DATABASE: CASH-FLOW
-            ASPNET_RABBITMQ_CONNECTION_STRING: rabbitmq
-            ASPNET_RABBITMQ_QUEUE: CASH-FLOW-ENTRIES
-            ASPNETCORE_HTTP_PORTS: 5000
+    # webapp:
+    #     image: fluxo-caixa:latest
+    #     build:
+    #         context: ..
+    #     ports:
+    #         - 5000:5000
+    #     depends_on:
+    #         - mongodb
+    #         - rabbitmq
+    #     environment:
+    #         ASPNETCORE_ENVIRONMENT: Development
+    #         ASPNET_MONGO_CONNECTION_STRING: mongodb://root:example@mongodb:27017
+    #         ASPNET_MONGO_DATABASE: CASH-FLOW
+    #         ASPNET_RABBITMQ_CONNECTION_STRING: rabbitmq
+    #         ASPNET_RABBITMQ_QUEUE: CASH-FLOW-ENTRIES
+    #         ASPNETCORE_HTTP_PORTS: 5000
 
-  # Banco de Dados MongoDB
     mongodb:
         image: mongo:latest
         restart: always
@@ -39,7 +35,6 @@ services:
         depends_on:
             - mongodb    
 
-  # Sistema de Mensageria RabbitMQ
     rabbitmq:
         image: rabbitmq:3-management
         restart: always
