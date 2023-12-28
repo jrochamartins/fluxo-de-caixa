@@ -9,11 +9,11 @@ using System.Text;
 
 namespace FluxoDeCaixa.Api.Controllers
 {
+    [AllowAnonymous]
     [Route("[controller]")]
     public class LoginController(INotifier notifier, ILogger<LoginController> logger, IConfiguration configuration) : MainController(notifier)
     {
         [HttpPost()]
-        [AllowAnonymous]
         public ActionResult<string> Login([FromBody] LoginPostRequest request)
         {
             var key = configuration["JWT_KEY"];
@@ -38,7 +38,6 @@ namespace FluxoDeCaixa.Api.Controllers
             }
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var keyBytes = Encoding.ASCII.GetBytes(key);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
@@ -46,7 +45,9 @@ namespace FluxoDeCaixa.Api.Controllers
                     new(ClaimTypes.Name, request.User),
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keyBytes), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(
+                    new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
+                    SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return CustomResponse(result: tokenHandler.WriteToken(token));

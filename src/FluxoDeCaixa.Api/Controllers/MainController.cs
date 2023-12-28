@@ -1,10 +1,12 @@
 ﻿using FluxoDeCaixa.Domain.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Net;
 
 namespace FluxoDeCaixa.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     public abstract class MainController(INotifier notifier) : ControllerBase
     {
