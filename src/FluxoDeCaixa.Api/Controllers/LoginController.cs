@@ -30,6 +30,9 @@ namespace FluxoDeCaixa.Api.Controllers
                 return CustomResponse();
             }
 
+            if (!ModelState.IsValid)
+                return CustomResponse(ModelState);
+
             // TO DO: Aqui pode ser usado mecanismo de validação do usuário externo.
             if (jwtUser != request.User)
             {
