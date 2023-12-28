@@ -5,11 +5,9 @@ namespace FluxoDeCaixa.Data.Repositories
 {
     public class EntriesRepository(DbContext context) : IEntriesRepository
     {
-        private readonly DbContext _context = context;
-
         public async Task CreateAsync(Entry entity)
         {
-            await _context.Entries.InsertOneAsync(entity);
+            await context.Entries.InsertOneAsync(entity);
         }
     }
 }

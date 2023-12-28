@@ -7,10 +7,8 @@ namespace FluxoDeCaixa.Domain.Services
 {
     public abstract class BaseService(INotifier notifier)
     {
-        private readonly INotifier _notifier = notifier;
-
         protected void AddNotification(string message) =>
-            _notifier.AddNotification(message);
+            notifier.AddNotification(message);
 
         protected void AddNotification(ValidationResult validationResult)
         {

@@ -10,9 +10,9 @@ namespace FluxoDeCaixa.Queue
         private readonly IConnection _connection;
         private readonly IModel _channel;
 
-        public QueueContext(IOptionsMonitor<QueueContextOptions> optionsAccessor)
+        public QueueContext(IOptionsMonitor<QueueContextOptions> options)
         {
-            _options = optionsAccessor.CurrentValue;
+            _options = options.CurrentValue;
             var factory = new ConnectionFactory() { HostName = _options.ASPNET_RABBITMQ_CONNECTION_STRING };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();

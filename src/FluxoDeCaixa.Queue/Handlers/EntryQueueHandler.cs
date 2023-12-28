@@ -5,9 +5,7 @@ namespace FluxoDeCaixa.Queue.Handlers
 {
     public class EntryQueueHandler(IDailyBalanceService balanceService) : BaseQueueSubscriberHandler<Entry>
     {
-        private readonly IDailyBalanceService _balanceService = balanceService;
-
         public override void Execute(Entry payload) =>
-            _balanceService.CreateUpdateAsync(payload);
+            balanceService.CreateUpdateAsync(payload);
     }
 }
