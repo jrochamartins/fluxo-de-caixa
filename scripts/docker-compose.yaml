@@ -6,6 +6,7 @@ services:
         restart: always
         build:
             context: ..
+            dockerfile: ./Dockerfile
         ports:
             - 5000:5000
         depends_on:
@@ -29,14 +30,6 @@ services:
             MONGO_INITDB_ROOT_PASSWORD: example
         ports:
             - 27017:27017
-
-    mongo-express:
-        image: mongo-express
-        restart: always
-        ports:
-            - 8081:8081
-        depends_on:
-            - mongodb    
 
     rabbitmq:
         image: rabbitmq:3-management
