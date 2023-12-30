@@ -12,7 +12,7 @@ namespace FluxoDeCaixa.Data
         public DbContext(IOptionsMonitor<DbContextOptions> optionsAccessor)
         {
             _options = optionsAccessor.CurrentValue;
-            _database = DatabaseFactory(_options.ASPNET_MONGO_CONNECTION_STRING, _options.ASPNET_MONGO_DATABASE);
+            _database = DatabaseFactory(_options.MONGO_CONNECTION_STRING, _options.MONGO_DATABASE);
         }
 
         private static IMongoDatabase DatabaseFactory(string? databaseConnection, string? databaseName) =>

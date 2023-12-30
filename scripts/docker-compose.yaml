@@ -2,8 +2,7 @@ version: '3.8'
 
 services:
     webapp:
-        image: fluxodecaixaapi:dev
-        restart: always
+        image: fluxodecaixaapi:dev        
         build:
             context: ..
             dockerfile: ./scripts/Dockerfile
@@ -11,26 +10,30 @@ services:
             - 5000:5000
             - 5001:5001
         depends_on:
-            - mongodb
-            - rabbitmq
+            mongodb:
+                condition: service_started            
+            rabbitmq:
+                condition: service_healthy
         environment:
             # https://learn.microsoft.com/pt-br/aspnet/core/security/docker-compose-https?view=aspnetcore-8.0
             ASPNETCORE_ENVIRONMENT: Development
             ASPNETCORE_URLS: https://+:5001;http://+:5000
             ASPNETCORE_Kestrel__Certificates__Default__Password: 3346669e-5d67-4312-8001-d47eac475851
             ASPNETCORE_Kestrel__Certificates__Default__Path: /https/fluxodecaixaapi.pfx
-            ASPNET_MONGO_CONNECTION_STRING: mongodb://root:example@mongodb:27017
-            ASPNET_MONGO_DATABASE: CASH-FLOW
-            ASPNET_RABBITMQ_CONNECTION_STRING: rabbitmq
-            ASPNET_RABBITMQ_QUEUE: CASH-FLOW-ENTRIES
+
+            MONGO_CONNECTION_STRING: mongodb://root:example@mongodb:27017
+            MONGO_DATABASE: CASH-FLOW
+            
+            RABBITMQ_CONNECTION_STRING: rabbitmq
+            RABBITMQ_QUEUE: CASH-FLOW-ENTRIES
+
             JWT_KEY: B5BF91AD-67B5-4D10-9315-3B0AEF4FADD9
             JWT_USER: admin
         volumes:
             - ~/.aspnet/https:/https:ro
 
     mongodb:
-        image: mongo:latest
-        restart: always
+        image: mongo:latest        
         environment:
             MONGO_INITDB_ROOT_USERNAME: root
             MONGO_INITDB_ROOT_PASSWORD: example
@@ -39,7 +42,11 @@ services:
 
     rabbitmq:
         image: rabbitmq:3-management
-        restart: always
+        healthcheck:
+            test: rabbitmq-diagnostics -q ping
+            interval: 10s
+            timeout: 10s
+            retries: 10
         environment:
             RABBITMQ_DEFAULT_USER: guest
             RABBITMQ_DEFAULT_PASS: guest
