@@ -2,19 +2,23 @@ version: '3.8'
 
 services:
     webapp:
-        image: fluxo-caixa:latest
+        image: fluxodecaixaapi:dev
         restart: always
         build:
             context: ..
             dockerfile: ./scripts/Dockerfile
         ports:
             - 5000:5000
+            - 5001:5001
         depends_on:
             - mongodb
             - rabbitmq
         environment:
-            ASPNETCORE_HTTP_PORTS: 5000
+            # https://learn.microsoft.com/pt-br/aspnet/core/security/docker-compose-https?view=aspnetcore-8.0
             ASPNETCORE_ENVIRONMENT: Development
+            ASPNETCORE_URLS: https://+:5001;http://+:5000
+            ASPNETCORE_Kestrel__Certificates__Default__Password: 3346669e-5d67-4312-8001-d47eac475851
+            ASPNETCORE_Kestrel__Certificates__Default__Path: /https/fluxodecaixaapi.pfx
             ASPNET_MONGO_CONNECTION_STRING: mongodb://root:example@mongodb:27017
             ASPNET_MONGO_DATABASE: CASH-FLOW
             ASPNET_RABBITMQ_CONNECTION_STRING: rabbitmq
@@ -22,7 +26,7 @@ services:
             JWT_KEY: B5BF91AD-67B5-4D10-9315-3B0AEF4FADD9
             JWT_USER: admin
         volumes:
-            - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+            - ~/.aspnet/https:/https:ro
 
     mongodb:
         image: mongo:latest
@@ -39,6 +43,6 @@ services:
         environment:
             RABBITMQ_DEFAULT_USER: guest
             RABBITMQ_DEFAULT_PASS: guest
-        ports:            
+        ports:
             - 5672:5672
             - 15672:15672

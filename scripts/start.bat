@@ -1,5 +1,8 @@
+dotnet dev-certs https -ep $env:USERPROFILE\.aspnet\https\fluxodecaixa.api.pfx -p 3346669e-5d67-4312-8001-d47eac475851
+dotnet dev-certs https --trust
+
 docker-compose up -d
-start http://localhost:5000/swagger
+start https://localhost:5001/swagger
 
 set /p DUMMY=Hit ENTER to continue...
 docker-compose down
