@@ -10,6 +10,7 @@ namespace FluxoDeCaixa.Api.Configurations
         {
             CreateMap<PostEntryRequest, Entry>();
             CreateMap<Entry, PostEntryResponse>();
+            CreateMap<Balance, GetBalanceResponse>();
         }
     }
 }

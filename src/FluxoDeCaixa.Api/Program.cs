@@ -15,9 +15,9 @@ namespace FluxoDeCaixa.Api
 
             builder
                 .ConfigureDependencies()
-                .ConfigureJwtAuthentication();                
+                .ConfigureJwtAuthentication();
 
-            var app = builder.Build();            
+            var app = builder.Build();
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
