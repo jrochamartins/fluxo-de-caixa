@@ -4,24 +4,12 @@ using MongoDB.Driver;
 
 namespace FluxoDeCaixa.Data
 {
-    public class DbContext
+    public class DbContext(IOptionsMonitor<DbContextOptions> options)
     {
-        private readonly DbContextOptions _options;
-        private readonly IMongoDatabase _database;
+        private readonly IMongoDatabase _database = new MongoClient(options.CurrentValue.MONGO_CONNECTION_STRING).GetDatabase(options.CurrentValue.MONGO_DATABASE);
 
-        public DbContext(IOptionsMonitor<DbContextOptions> optionsAccessor)
-        {
-            _options = optionsAccessor.CurrentValue;
-            _database = DatabaseFactory(_options.MONGO_CONNECTION_STRING, _options.MONGO_DATABASE);
-        }
+        internal IMongoCollection<Entry> Entries => _database.GetCollection<Entry>(nameof(Entries).ToLower());
 
-        private static IMongoDatabase DatabaseFactory(string? databaseConnection, string? databaseName) =>
-            new MongoClient(databaseConnection).GetDatabase(databaseName);
-
-        internal IMongoCollection<Entry> Entries
-            => _database.GetCollection<Entry>(nameof(Entries).ToLower());
-
-        internal IMongoCollection<Balance> DailyBalances
-            => _database.GetCollection<Balance>(nameof(DailyBalances).ToLower());
+        internal IMongoCollection<Balance> DailyBalances => _database.GetCollection<Balance>(nameof(DailyBalances).ToLower());
     }
 }

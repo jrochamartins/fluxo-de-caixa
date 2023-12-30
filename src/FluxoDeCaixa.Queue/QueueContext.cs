@@ -8,29 +8,24 @@ namespace FluxoDeCaixa.Queue
     {
         private readonly QueueContextOptions _options;
         private readonly IConnection _connection;
-        private readonly IModel _channel;
+        private readonly IModel _model;
 
         public QueueContext(IOptionsMonitor<QueueContextOptions> options)
         {
             _options = options.CurrentValue;
             var factory = new ConnectionFactory() { HostName = _options.RABBITMQ_CONNECTION_STRING };
             _connection = factory.CreateConnection();
-            _channel = _connection.CreateModel();
-            _channel.QueueDeclare(queue: _options.RABBITMQ_QUEUE, durable: false, exclusive: false, autoDelete: false, arguments: null);
+            _model = _connection.CreateModel();
+            _model.QueueDeclare(queue: _options.RABBITMQ_QUEUE, durable: false, exclusive: false, autoDelete: false, arguments: null);
         }
 
         public void Publish(byte[] message, string exchange = "") =>
-            _channel.BasicPublish(
-                exchange: exchange,
-                routingKey: _options.RABBITMQ_QUEUE,
-                basicProperties: null,
-                body: message);
+            _model.BasicPublish(exchange: exchange, routingKey: _options.RABBITMQ_QUEUE, basicProperties: null, body: message);
 
-        public EventingBasicConsumer CreateConsumer() =>
-           new(_channel);
+        public EventingBasicConsumer CreateConsumer() => new(_model);
 
         public void RegisterConsumer(IBasicConsumer consumer) =>
-            _channel.BasicConsume(queue: _options.RABBITMQ_QUEUE, autoAck: true, consumer: consumer);
+            _model.BasicConsume(queue: _options.RABBITMQ_QUEUE, autoAck: true, consumer: consumer);
 
         public void Dispose()
         {
@@ -42,7 +37,7 @@ namespace FluxoDeCaixa.Queue
         {
             if (disposing)
             {
-                _channel?.Dispose();
+                _model?.Dispose();
                 _connection?.Dispose();
             }
         }
