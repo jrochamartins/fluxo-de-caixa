@@ -8,15 +8,17 @@ namespace FluxoDeCaixa.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddHealthChecks();
 
             builder.Host.UseSerilog((context, configuration) =>
                 configuration.ReadFrom.Configuration(context.Configuration));
 
             builder
                 .ConfigureDependencies()
-                .ConfigureJwtAuthentication();
+                .ConfigureJwtAuthentication();                
 
             var app = builder.Build();
+            app.MapHealthChecks("/health");
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
