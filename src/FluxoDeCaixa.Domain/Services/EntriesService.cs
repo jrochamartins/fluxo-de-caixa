@@ -13,6 +13,7 @@ namespace FluxoDeCaixa.Domain.Services
         {
             if (!Validate(new EntryValidator(), entry))
                 return;
+
             await repository.CreateAsync(entry);
 
             publisher.Publish(entry);
