@@ -15,7 +15,7 @@ namespace FluxoDeCaixa.Api.Controllers
             if (!ModelState.IsValid)
                 return CustomResponse(ModelState);
 
-            var balance = await balanceRepository.GetAsync(request.GetDateOnly());
+            var balance = await balanceRepository.GetByDateAsync(request.GetDateOnly());
             var response = mapper.Map<GetBalanceResponse>(balance);
 
             return CustomResponse(result: response);

@@ -42,8 +42,8 @@ namespace FluxoDeCaixa.Api.Configurations
 
             // Create Balance
             builder.Services.AddScoped<EntryQueueHandler>();
-            builder.Services.AddScoped<IBalanceService, DailyBalanceService>();
-            builder.Services.AddScoped<IBalanceRepository, DailyBalanceRepository>();
+            builder.Services.AddScoped<IBalanceService, BalanceService>();
+            builder.Services.AddScoped<IBalanceRepository, BalanceRepository>();
 
             return builder;
         }

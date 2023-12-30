@@ -3,7 +3,7 @@ using FluentValidation.Results;
 using FluxoDeCaixa.Domain.Abstractions.Models;
 using FluxoDeCaixa.Domain.Abstractions.Notifications;
 
-namespace FluxoDeCaixa.Domain.Services
+namespace FluxoDeCaixa.Domain.Abstractions.Services
 {
     public abstract class BaseService(INotifier notifier)
     {
@@ -13,7 +13,9 @@ namespace FluxoDeCaixa.Domain.Services
         protected void AddNotification(ValidationResult validationResult)
         {
             foreach (var item in validationResult.Errors)
+            {
                 AddNotification(item.ErrorMessage);
+            }
         }
 
         protected bool Validate<TValidator, TEntity>(TValidator validator, TEntity entity)

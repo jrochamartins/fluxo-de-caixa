@@ -4,13 +4,13 @@ using FluxoDeCaixa.Domain.Models;
 
 namespace FluxoDeCaixa.Domain.Services
 {
-    public class DailyBalanceService(IBalanceRepository balanceRepository) :
+    public class BalanceService(IBalanceRepository balanceRepository) :
         IBalanceService
     {
-        public async Task<Balance> CreateUpdateAsync(Entry entry)
+        public async Task<Balance> CalculateAsync(Entry entry)
         {
             var date = DateOnly.FromDateTime(entry.Date);
-            var balance = await balanceRepository.GetAsync(date)
+            var balance = await balanceRepository.GetByDateAsync(date)
                 ?? new Balance() { Date = date };
 
             switch (entry.EntryType)
@@ -23,7 +23,8 @@ namespace FluxoDeCaixa.Domain.Services
                     break;
             }
 
-            return await balanceRepository.CreateUpdateAsync(balance);
+            await balanceRepository.SaveAsync(balance);
+            return balance;
         }
     }
 }

@@ -4,6 +4,6 @@ namespace FluxoDeCaixa.Domain.Abstractions.Services
 {
     public interface IBalanceService
     {
-        Task<Balance> CreateUpdateAsync(Entry entry);
+        Task<Balance> CalculateAsync(Entry entry);
     }
 }
