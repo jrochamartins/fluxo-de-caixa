@@ -6,7 +6,7 @@ services:
         restart: always
         build:
             context: ..
-            dockerfile: ./Dockerfile
+            dockerfile: ./scripts/Dockerfile
         ports:
             - 5000:5000
         depends_on:
