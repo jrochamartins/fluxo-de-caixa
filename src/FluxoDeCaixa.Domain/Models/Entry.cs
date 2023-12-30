@@ -1,4 +1,6 @@
-﻿namespace FluxoDeCaixa.Domain.Models
+﻿using FluxoDeCaixa.Domain.Abstractions.Models;
+
+namespace FluxoDeCaixa.Domain.Models
 {
     public class Entry : Entity
     {

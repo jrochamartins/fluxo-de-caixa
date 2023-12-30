@@ -17,8 +17,7 @@ namespace FluxoDeCaixa.Api
                 .ConfigureDependencies()
                 .ConfigureJwtAuthentication();                
 
-            var app = builder.Build();
-            app.MapHealthChecks("/health");
+            var app = builder.Build();            
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -31,6 +30,7 @@ namespace FluxoDeCaixa.Api
             app.MapControllers();
 
             app.UseRabbitListener();
+            app.MapHealthChecks("/health");
 
             app.Run();
         }

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using FluxoDeCaixa.Domain.Abstractions.Models;
 using FluxoDeCaixa.Domain.Abstractions.Notifications;
-using FluxoDeCaixa.Domain.Models;
 
 namespace FluxoDeCaixa.Domain.Services
 {

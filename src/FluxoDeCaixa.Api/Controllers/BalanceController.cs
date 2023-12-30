@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FluxoDeCaixa.Api.Controllers
 {
     [Route("[controller]")]
-    public class BalanceController(INotifier notifier, IDailyBalanceRepository dailyBalanceRepository) : MainController(notifier)
+    public class BalanceController(INotifier notifier, IBalanceRepository balanceRepository) : MainController(notifier)
     {
         [HttpGet()]
         public async Task<ActionResult<IEnumerable<Entry>>> Get([FromQuery] GetBalanceResquest request)
@@ -15,7 +15,7 @@ namespace FluxoDeCaixa.Api.Controllers
             if (!ModelState.IsValid)
                 return CustomResponse(ModelState);
 
-            var list = await dailyBalanceRepository.GetAsync(request.GetDateOnly());
+            var list = await balanceRepository.GetAsync(request.GetDateOnly());
             return CustomResponse(result: list);
         }
     }

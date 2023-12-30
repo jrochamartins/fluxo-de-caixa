@@ -3,7 +3,7 @@ using FluxoDeCaixa.Domain.Models;
 
 namespace FluxoDeCaixa.Queue.Handlers
 {
-    public class EntryQueueHandler(IDailyBalanceService balanceService) : BaseQueueHandler<Entry>
+    public class EntryQueueHandler(IBalanceService balanceService) : BaseQueueHandler<Entry>
     {
         public override void Handle(Entry payload) =>
             balanceService.CreateUpdateAsync(payload);

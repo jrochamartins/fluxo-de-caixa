@@ -1,5 +1,5 @@
 ﻿using FluxoDeCaixa.Domain.Abstractions.Adapters;
-using FluxoDeCaixa.Domain.Models;
+using FluxoDeCaixa.Domain.Abstractions.Models;
 using Newtonsoft.Json;
 using System.Text;
 

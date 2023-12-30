@@ -21,7 +21,7 @@ namespace FluxoDeCaixa.Data
         internal IMongoCollection<Entry> Entries
             => _database.GetCollection<Entry>(nameof(Entries).ToLower());
 
-        internal IMongoCollection<DailyBalance> DailyBalance
-            => _database.GetCollection<DailyBalance>(nameof(DailyBalance).ToLower());
+        internal IMongoCollection<Balance> DailyBalance
+            => _database.GetCollection<Balance>(nameof(DailyBalance).ToLower());
     }
 }

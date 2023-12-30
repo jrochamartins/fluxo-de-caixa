@@ -2,8 +2,8 @@
 
 namespace FluxoDeCaixa.Domain.Abstractions.Services
 {
-    public interface IDailyBalanceService
+    public interface IBalanceService
     {
-        Task<DailyBalance> CreateUpdateAsync(Entry entry);
+        Task<Balance> CreateUpdateAsync(Entry entry);
     }
 }

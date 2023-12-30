@@ -5,21 +5,21 @@ using MongoDB.Driver;
 namespace FluxoDeCaixa.Data.Repositories
 {
     public class DailyBalanceRepository(DbContext context) :
-        IDailyBalanceRepository
+        IBalanceRepository
     {
-        public async Task<DailyBalance?> GetAsync(DateOnly date)
+        public async Task<Balance?> GetAsync(DateOnly date)
         {
             DateTime dateFilter = date.ToDateTime(TimeOnly.Parse("00:00 AM"));
-            var filterDefinition = Builders<DailyBalance>.Filter.Where(e => e.Date == date);
+            var filterDefinition = Builders<Balance>.Filter.Where(e => e.Date == date);
             var searchResult = await context.DailyBalance.FindAsync(filterDefinition);
             return searchResult.FirstOrDefault();
         }
 
-        public async Task<DailyBalance> CreateUpdateAsync(DailyBalance balance)
+        public async Task<Balance> CreateUpdateAsync(Balance balance)
         {
-            if (!balance.IsNew())
+            if (!balance.IsNew)
             {
-                var filterDefinition = Builders<DailyBalance>.Filter.Where(e => e.Id == balance.Id);
+                var filterDefinition = Builders<Balance>.Filter.Where(e => e.Id == balance.Id);
                 var result = await context.DailyBalance.FindOneAndReplaceAsync(filterDefinition, balance);
             }
             else
