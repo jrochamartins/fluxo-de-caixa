@@ -1,10 +1,11 @@
 ﻿using FluxoDeCaixa.Data;
 using FluxoDeCaixa.Data.Repositories;
-using FluxoDeCaixa.Domain.Adapters;
+using FluxoDeCaixa.Domain.Abstractions.Adapters;
+using FluxoDeCaixa.Domain.Abstractions.Notifications;
+using FluxoDeCaixa.Domain.Abstractions.Repositories;
+using FluxoDeCaixa.Domain.Abstractions.Services;
 using FluxoDeCaixa.Domain.Notifications;
-using FluxoDeCaixa.Domain.Repositories;
 using FluxoDeCaixa.Domain.Services;
-using FluxoDeCaixa.Domain.Services.Contracts;
 using FluxoDeCaixa.Queue;
 using FluxoDeCaixa.Queue.Handlers;
 
@@ -40,7 +41,7 @@ namespace FluxoDeCaixa.Api.Configurations
             builder.Services.AddScoped<IQueuePublisher, QueuePublisher>();
 
             // Create Balance
-            builder.Services.AddScoped<IQueueSubscriberHandler, EntryQueueHandler>();
+            builder.Services.AddScoped<EntryQueueHandler>();
             builder.Services.AddScoped<IDailyBalanceService, DailyBalanceService>();
             builder.Services.AddScoped<IDailyBalanceRepository, DailyBalanceRepository>();
 

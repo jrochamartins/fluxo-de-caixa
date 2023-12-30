@@ -1,6 +1,6 @@
 ﻿using FluxoDeCaixa.Domain.Notifications;
 
-namespace FluxoDeCaixa.Domain.Services.Contracts
+namespace FluxoDeCaixa.Domain.Abstractions.Notifications
 {
     public interface INotifier
     {

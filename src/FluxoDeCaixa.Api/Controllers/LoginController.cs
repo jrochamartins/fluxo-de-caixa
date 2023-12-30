@@ -1,5 +1,5 @@
 ﻿using FluxoDeCaixa.Api.ViewModels;
-using FluxoDeCaixa.Domain.Services.Contracts;
+using FluxoDeCaixa.Domain.Abstractions.Notifications;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;

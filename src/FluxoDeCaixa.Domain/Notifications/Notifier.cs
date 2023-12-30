@@ -1,4 +1,4 @@
-﻿using FluxoDeCaixa.Domain.Services.Contracts;
+﻿using FluxoDeCaixa.Domain.Abstractions.Notifications;
 
 namespace FluxoDeCaixa.Domain.Notifications
 {

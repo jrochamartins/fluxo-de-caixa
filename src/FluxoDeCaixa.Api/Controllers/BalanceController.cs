@@ -1,14 +1,13 @@
 ﻿using FluxoDeCaixa.Api.ViewModels;
+using FluxoDeCaixa.Domain.Abstractions.Notifications;
+using FluxoDeCaixa.Domain.Abstractions.Repositories;
 using FluxoDeCaixa.Domain.Models;
-using FluxoDeCaixa.Domain.Repositories;
-using FluxoDeCaixa.Domain.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FluxoDeCaixa.Api.Controllers
 {
     [Route("[controller]")]
-    public class BalanceController(INotifier notifier, IDailyBalanceRepository dailyBalanceRepository) :
-        MainController(notifier)
+    public class BalanceController(INotifier notifier, IDailyBalanceRepository dailyBalanceRepository) : MainController(notifier)
     {
         [HttpGet()]
         public async Task<ActionResult<IEnumerable<Entry>>> Get([FromQuery] GetBalanceResquest request)

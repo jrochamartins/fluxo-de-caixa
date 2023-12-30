@@ -1,8 +1,8 @@
 ﻿using FluxoDeCaixa.Domain.Models;
 
-namespace FluxoDeCaixa.Domain.Repositories
+namespace FluxoDeCaixa.Domain.Abstractions.Services
 {
-    public interface IEntriesRepository
+    public interface IEntriesService
     {
         Task CreateAsync(Entry entity);
     }

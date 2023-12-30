@@ -1,4 +1,4 @@
-﻿using FluxoDeCaixa.Domain.Adapters;
+﻿using FluxoDeCaixa.Domain.Abstractions.Adapters;
 using Newtonsoft.Json;
 using System.Text;
 

@@ -1,4 +1,4 @@
-﻿namespace FluxoDeCaixa.Domain.Adapters
+﻿namespace FluxoDeCaixa.Domain.Abstractions.Adapters
 {
     public interface IQueuePublisher
     {

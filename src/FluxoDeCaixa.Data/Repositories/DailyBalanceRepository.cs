@@ -1,5 +1,5 @@
-﻿using FluxoDeCaixa.Domain.Models;
-using FluxoDeCaixa.Domain.Repositories;
+﻿using FluxoDeCaixa.Domain.Abstractions.Repositories;
+using FluxoDeCaixa.Domain.Models;
 using MongoDB.Driver;
 
 namespace FluxoDeCaixa.Data.Repositories

@@ -1,7 +1,8 @@
-﻿using FluxoDeCaixa.Domain.Adapters;
+﻿using FluxoDeCaixa.Domain.Abstractions.Adapters;
+using FluxoDeCaixa.Domain.Abstractions.Notifications;
+using FluxoDeCaixa.Domain.Abstractions.Repositories;
+using FluxoDeCaixa.Domain.Abstractions.Services;
 using FluxoDeCaixa.Domain.Models;
-using FluxoDeCaixa.Domain.Repositories;
-using FluxoDeCaixa.Domain.Services.Contracts;
 using FluxoDeCaixa.Domain.Validators;
 
 namespace FluxoDeCaixa.Domain.Services

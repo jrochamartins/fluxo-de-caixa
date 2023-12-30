@@ -1,4 +1,4 @@
-﻿using FluxoDeCaixa.Domain.Adapters;
+﻿using FluxoDeCaixa.Domain.Abstractions.Adapters;
 
 namespace FluxoDeCaixa.Api.Configurations
 {

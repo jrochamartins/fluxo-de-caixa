@@ -1,4 +1,4 @@
-﻿using FluxoDeCaixa.Domain.Services.Contracts;
+﻿using FluxoDeCaixa.Domain.Abstractions.Notifications;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -10,8 +10,7 @@ namespace FluxoDeCaixa.Api.Controllers
     [ApiController]
     public abstract class MainController(INotifier notifier) : ControllerBase
     {
-        protected bool IsValidOperation() =>
-            !notifier.HasNotifications();
+        protected bool IsValidOperation() => !notifier.HasNotifications();
 
         protected ActionResult CustomResponse(HttpStatusCode statusCode = HttpStatusCode.OK, object? result = null)
         {

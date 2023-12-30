@@ -1,6 +1,6 @@
 ﻿using FluxoDeCaixa.Domain.Models;
 
-namespace FluxoDeCaixa.Domain.Repositories
+namespace FluxoDeCaixa.Domain.Abstractions.Repositories
 {
     public interface IDailyBalanceRepository
     {

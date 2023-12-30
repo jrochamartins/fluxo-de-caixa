@@ -1,6 +1,6 @@
 ﻿using FluxoDeCaixa.Domain.Models;
 
-namespace FluxoDeCaixa.Domain.Services.Contracts
+namespace FluxoDeCaixa.Domain.Abstractions.Services
 {
     public interface IDailyBalanceService
     {
