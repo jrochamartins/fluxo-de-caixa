@@ -10,8 +10,8 @@ namespace FluxoDeCaixa.Domain.Tests
 {
     public class EntriesServiceTests
     {
-        private readonly EntriesService _entriesService;
         private readonly Notifier _notifier = new();
+        private readonly EntriesService _entriesService;
         private readonly IEntriesRepository _entriesRepositoryMock;
         private readonly IQueuePublisher _queuePublisherMock;
 
