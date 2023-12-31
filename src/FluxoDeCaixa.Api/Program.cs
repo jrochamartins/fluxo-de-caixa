@@ -22,7 +22,7 @@ namespace FluxoDeCaixa.Api
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
+            }            
             app.UseSerilogRequestLogging();
             app.UseHttpsRedirection();
             app.UseAuthentication();

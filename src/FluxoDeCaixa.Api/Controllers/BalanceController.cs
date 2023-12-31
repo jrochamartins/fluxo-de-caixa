@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace FluxoDeCaixa.Api.Controllers
 {
     [Route("[controller]")]
-    public class BalanceController(INotifier notifier, IBalanceRepository balanceRepository, IMapper mapper) : MainController(notifier)
+    public class BalanceController(INotifier notifier, IBalanceRepository balanceRepository, IMapper mapper, ILogger<BalanceController> logger) : MainController(notifier)
     {
         [HttpGet()]
         public async Task<ActionResult<GetBalanceResponse>> Get([FromQuery] GetBalanceResquest request)
         {
+            logger.LogInformation("HTTP GET /Balance started");
+
             if (!ModelState.IsValid)
                 return CustomResponse(ModelState);
 
