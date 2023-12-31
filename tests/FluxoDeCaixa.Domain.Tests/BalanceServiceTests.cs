@@ -1,4 +1,3 @@
-using FluentAssertions;
 using FluxoDeCaixa.Domain.Abstractions.Repositories;
 using FluxoDeCaixa.Domain.Models;
 using FluxoDeCaixa.Domain.Services;
