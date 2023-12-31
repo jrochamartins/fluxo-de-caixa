@@ -6,7 +6,7 @@ namespace FluxoDeCaixa.Domain.Services
 {
     public class BalanceService(IBalanceRepository balanceRepository) : IBalanceService
     {
-        public async Task<Balance> CalculateAsync(Entry entry)
+        public async Task CalculateAsync(Entry entry)
         {
             var date = DateOnly.FromDateTime(entry.Date);
 
@@ -24,8 +24,7 @@ namespace FluxoDeCaixa.Domain.Services
                     break;
             }
 
-            await balanceRepository.SaveAsync(balance);
-            return balance;
+            await balanceRepository.SaveAsync(balance);            
         }
     }
 }

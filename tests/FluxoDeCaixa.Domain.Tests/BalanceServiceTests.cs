@@ -11,8 +11,8 @@ namespace FluxoDeCaixa.Domain.Tests
         private readonly BalanceService _balanceService;
         private readonly IBalanceRepository _balanceRepositoryMock;
 
-        private static readonly Entry creditEntry = new() { EntryType = EntryType.Credit, Description = "Test", Date = DateTime.Now, Value = 5, };
-        private static readonly Entry debtEntry = new() { EntryType = EntryType.Debt, Description = "Test", Date = DateTime.Now, Value = 5, };
+        private static readonly Entry _newEntry = new() { Description = "Test", Date = DateTime.Now, Value = 5, };
+        private readonly Balance _existingBalance = new() { Credits = 50, Debts = 25, Date = DateOnly.FromDateTime(_newEntry.Date) };
 
         public BalanceServiceTests()
         {
@@ -24,99 +24,88 @@ namespace FluxoDeCaixa.Domain.Tests
         public async Task CalculateAsync_NewBalance_WithCreditEntry_Should_HasCreditValues()
         {
             //Arrange
+            _newEntry.EntryType = EntryType.Credit;
             _balanceRepositoryMock
-                .GetByDateAsync(DateOnly.FromDateTime(creditEntry.Date))
+                .GetByDateAsync(_existingBalance.Date)
                 .Returns((Balance?)null);
 
             // Act
-            var balance = await _balanceService.CalculateAsync(creditEntry);
+            await _balanceService.CalculateAsync(_newEntry);
 
             // Assert
-            balance.Value.Should().Be(5);
-            balance.Credits.Should().Be(5);
-            balance.Debts.Should().Be(0);
-            balance.Date.Should().Be(DateOnly.FromDateTime(creditEntry.Date));
+            await _balanceRepositoryMock
+                .Received(1)
+                .SaveAsync(Arg.Is<Balance>(b => b.Id != _existingBalance.Id
+                                                && b.Credits == 5
+                                                && b.Debts == 0
+                                                && b.Value == 5
+                                                && b.Date == _existingBalance.Date));
         }
 
         [Fact]
         public async Task CalculateAsync_WithCreditEntry_Should_HasCreditValues()
         {
             //Arrange            
+            _newEntry.EntryType = EntryType.Credit;
             _balanceRepositoryMock
-                .GetByDateAsync(DateOnly.FromDateTime(creditEntry.Date))
-                .Returns(new Balance() { Id = Guid.NewGuid(), Credits = 20, Debts = 5, Date = DateOnly.FromDateTime(creditEntry.Date) });
+                .GetByDateAsync(_existingBalance.Date)
+                .Returns(_existingBalance);
 
             // Act
-            var balance = await _balanceService.CalculateAsync(creditEntry);
+            await _balanceService.CalculateAsync(_newEntry);
 
             // Assert
-            balance.Value.Should().Be(20);
-            balance.Credits.Should().Be(25);
-            balance.Debts.Should().Be(5);
-            balance.Date.Should().Be(DateOnly.FromDateTime(creditEntry.Date));
+            await _balanceRepositoryMock
+                .Received(1)
+                .SaveAsync(Arg.Is<Balance>(b => b.Id == _existingBalance.Id
+                                                && b.Credits == 55
+                                                && b.Debts == 25
+                                                && b.Value == 30
+                                                && b.Date == _existingBalance.Date));
         }
 
         [Fact]
         public async Task CalculateAsync_NewBalance_WithDebtEntry_Should_HasDebtValues()
         {
-            //Arrange           
+            //Arrange
+            _newEntry.EntryType = EntryType.Debt;
             _balanceRepositoryMock
-                .GetByDateAsync(DateOnly.FromDateTime(debtEntry.Date))
+                .GetByDateAsync(_existingBalance.Date)
                 .Returns((Balance?)null);
 
             // Act
-            var balance = await _balanceService.CalculateAsync(debtEntry);
+            await _balanceService.CalculateAsync(_newEntry);
 
             // Assert
-            balance.Value.Should().Be(-5);
-            balance.Credits.Should().Be(0);
-            balance.Debts.Should().Be(5);
-            balance.Date.Should().Be(DateOnly.FromDateTime(debtEntry.Date));
+            await _balanceRepositoryMock
+                .Received(1)
+                .SaveAsync(Arg.Is<Balance>(b => b.Id != _existingBalance.Id
+                                                && b.Credits == 0
+                                                && b.Debts == 5
+                                                && b.Value == -5
+                                                && b.Date == _existingBalance.Date));
         }
 
         [Fact]
         public async Task CalculateAsync_WithDebtEntry_Should_HasDebtValues()
         {
             //Arrange            
+            _newEntry.EntryType = EntryType.Debt;
             _balanceRepositoryMock
-                .GetByDateAsync(DateOnly.FromDateTime(debtEntry.Date))
-                .Returns(new Balance() { Id = Guid.NewGuid(), Credits = 20, Debts = 5, Date = DateOnly.FromDateTime(debtEntry.Date) });
+                .GetByDateAsync(_existingBalance.Date)
+                .Returns(_existingBalance);
 
             // Act
-            var balance = await _balanceService.CalculateAsync(debtEntry);
-
-            // Assert
-            balance.Date.Should().Be(DateOnly.FromDateTime(debtEntry.Date));
-            balance.Credits.Should().Be(20);
-            balance.Debts.Should().Be(10);
-            balance.Value.Should().Be(10);
-        }
-
-        [Fact]
-        public async Task CalculateAsync_Sucess_Should_CallSaveAsyncRepository()
-        {
-            //Arrange
-            var exitingBalance = new Balance()
-            {
-                Id = Guid.NewGuid(),
-                Credits = 20,
-                Debts = 5,
-                Date = DateOnly.FromDateTime(debtEntry.Date)
-            };
-
-            _balanceRepositoryMock
-                .GetByDateAsync(DateOnly.FromDateTime(debtEntry.Date))
-                .Returns(exitingBalance);
-
-            // Act
-            var balance = await _balanceService.CalculateAsync(debtEntry);
+            await _balanceService.CalculateAsync(_newEntry);
 
             // Assert
             await _balanceRepositoryMock
                 .Received(1)
-                .SaveAsync(Arg.Is<Balance>(b => 
-                                                b.Id == exitingBalance.Id && 
-                                                b.Id != debtEntry.Id));
+                .SaveAsync(Arg.Is<Balance>(b => b.Id == _existingBalance.Id
+                                                && b.Credits == 50
+                                                && b.Debts == 30
+                                                && b.Value == 20
+                                                && b.Date == _existingBalance.Date));
         }
     }
 }
