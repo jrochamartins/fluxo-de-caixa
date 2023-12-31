@@ -1,5 +1,6 @@
 using FluxoDeCaixa.Domain.Abstractions.Repositories;
 using FluxoDeCaixa.Domain.Models;
+using FluxoDeCaixa.Domain.Notifications;
 using FluxoDeCaixa.Domain.Services;
 using NSubstitute;
 
@@ -7,6 +8,7 @@ namespace FluxoDeCaixa.Domain.Tests
 {
     public class BalanceServiceTests
     {
+        private readonly Notifier _notifier = new();
         private readonly BalanceService _balanceService;
         private readonly IBalanceRepository _balanceRepositoryMock;
 
@@ -16,7 +18,7 @@ namespace FluxoDeCaixa.Domain.Tests
         public BalanceServiceTests()
         {
             _balanceRepositoryMock = Substitute.For<IBalanceRepository>();
-            _balanceService = new BalanceService(_balanceRepositoryMock);
+            _balanceService = new BalanceService(_notifier, _balanceRepositoryMock);
         }
 
         [Fact]

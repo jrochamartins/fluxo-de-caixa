@@ -1,38 +1,38 @@
 version: '3.8'
 
 services:
-    # webapp:
-    #     image: fluxodecaixaapi:dev        
-    #     build:
-    #         context: ..
-    #         dockerfile: ./scripts/Dockerfile
-    #     ports:
-    #         - 5000:5000
-    #         - 5001:5001
-    #     healthcheck:
-    #         test: curl --fail http://localhost:5000/health || exit 1
-    #         interval: 5s
-    #         timeout: 5s
-    #         retries: 5        
-    #     depends_on:
-    #         mongodb:
-    #             condition: service_started            
-    #         rabbitmq:
-    #             condition: service_healthy
-    #     environment:
-    #         # https://learn.microsoft.com/pt-br/aspnet/core/security/docker-compose-https?view=aspnetcore-8.0
-    #         ASPNETCORE_ENVIRONMENT: Development
-    #         ASPNETCORE_URLS: https://+:5001;http://+:5000
-    #         ASPNETCORE_Kestrel__Certificates__Default__Password: 3346669e-5d67-4312-8001-d47eac475851
-    #         ASPNETCORE_Kestrel__Certificates__Default__Path: /https/fluxodecaixaapi.pfx
-    #         MONGO_CONNECTION_STRING: mongodb://root:example@mongodb:27017
-    #         MONGO_DATABASE: CASH-FLOW            
-    #         RABBITMQ_CONNECTION_STRING: rabbitmq
-    #         RABBITMQ_QUEUE: CASH-FLOW-ENTRIES
-    #         JWT_KEY: B5BF91AD-67B5-4D10-9315-3B0AEF4FADD9
-    #         JWT_USER: admin
-    #     volumes:
-    #         - ~/.aspnet/https:/https:ro
+    webapp:
+        image: fluxodecaixaapi:dev        
+        build:
+            context: ..
+            dockerfile: ./scripts/Dockerfile
+        ports:
+            - 5000:5000
+            - 5001:5001
+        healthcheck:
+            test: curl --fail http://localhost:5000/health || exit 1
+            interval: 5s
+            timeout: 5s
+            retries: 5        
+        depends_on:
+            mongodb:
+                condition: service_started            
+            rabbitmq:
+                condition: service_healthy
+        environment:
+            # https://learn.microsoft.com/pt-br/aspnet/core/security/docker-compose-https?view=aspnetcore-8.0
+            ASPNETCORE_ENVIRONMENT: Development
+            ASPNETCORE_URLS: https://+:5001;http://+:5000
+            ASPNETCORE_Kestrel__Certificates__Default__Password: 3346669e-5d67-4312-8001-d47eac475851
+            ASPNETCORE_Kestrel__Certificates__Default__Path: /https/fluxodecaixaapi.pfx
+            MONGO_CONNECTION_STRING: mongodb://root:example@mongodb:27017
+            MONGO_DATABASE: CASH-FLOW            
+            RABBITMQ_CONNECTION_STRING: rabbitmq
+            RABBITMQ_QUEUE: CASH-FLOW-ENTRIES
+            JWT_KEY: B5BF91AD-67B5-4D10-9315-3B0AEF4FADD9
+            JWT_USER: admin
+        volumes:
+            - ~/.aspnet/https:/https:ro
 
     mongodb:
         image: mongo:latest        

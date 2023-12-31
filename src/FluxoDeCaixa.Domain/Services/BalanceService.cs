@@ -1,13 +1,18 @@
-﻿using FluxoDeCaixa.Domain.Abstractions.Repositories;
+﻿using FluxoDeCaixa.Domain.Abstractions.Notifications;
+using FluxoDeCaixa.Domain.Abstractions.Repositories;
 using FluxoDeCaixa.Domain.Abstractions.Services;
 using FluxoDeCaixa.Domain.Models;
+using FluxoDeCaixa.Domain.Validators;
 
 namespace FluxoDeCaixa.Domain.Services
 {
-    public class BalanceService(IBalanceRepository balanceRepository) : IBalanceService
+    public class BalanceService(INotifier notifier, IBalanceRepository balanceRepository) : BaseService(notifier), IBalanceService
     {
         public async Task CalculateAsync(Entry entry)
         {
+            if (!Validate(new EntryValidator(), entry))
+                return;
+
             var date = DateOnly.FromDateTime(entry.Date);
 
             var balance = 
