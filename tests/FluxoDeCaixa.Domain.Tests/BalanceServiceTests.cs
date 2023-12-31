@@ -96,7 +96,14 @@ namespace FluxoDeCaixa.Domain.Tests
         public async Task CalculateAsync_Sucess_Should_CallSaveAsyncRepository()
         {
             //Arrange
-            var exitingBalance = new Balance() { Id = Guid.NewGuid(), Credits = 20, Debts = 5, Date = DateOnly.FromDateTime(debtEntry.Date) };
+            var exitingBalance = new Balance()
+            {
+                Id = Guid.NewGuid(),
+                Credits = 20,
+                Debts = 5,
+                Date = DateOnly.FromDateTime(debtEntry.Date)
+            };
+
             _balanceRepositoryMock
                 .GetByDateAsync(DateOnly.FromDateTime(debtEntry.Date))
                 .Returns(exitingBalance);
@@ -107,7 +114,9 @@ namespace FluxoDeCaixa.Domain.Tests
             // Assert
             await _balanceRepositoryMock
                 .Received(1)
-                .SaveAsync(Arg.Is<Balance>(b => b.Id == exitingBalance.Id && b.Id != debtEntry.Id));
+                .SaveAsync(Arg.Is<Balance>(b => 
+                                                b.Id == exitingBalance.Id && 
+                                                b.Id != debtEntry.Id));
         }
     }
 }
