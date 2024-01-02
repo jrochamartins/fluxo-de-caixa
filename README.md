@@ -53,6 +53,7 @@ Abra o terminal no diretório de sua escolha e execute o seguinte comando para cl
 
 2. Iniciar as dependencias do projeto:
 - Navegue até a pasta scripts e execute o arquivo em lotes ```start.bat```
+
 <em>Obs: Mantenha esse terminal rodando até o terminar o teste local.</em>
 
 3. Iniciar a aplicação:
