@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-01-02T21:23:38.005Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="bkBls7d2QK7XAR5jvguW" version="22.1.16" type="device" pages="2">
+<mxfile host="Electron" modified="2024-01-02T22:45:43.677Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="tzi-clasF80j9_VBJ5nz" version="22.1.16" type="device" pages="2">
   <diagram name="Dependencias" id="lh5CfPEjWZGKf_8GbTHD">
     <mxGraphModel dx="2901" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -30,6 +30,27 @@
         </mxCell>
         <mxCell id="ZmnDn0bVMC0EXwRuv4WD-13" value="&lt;b&gt;FluxoDeCaixa.Domain.Tests&lt;/b&gt;&lt;br&gt;[Component: .NET 8.0]&lt;br&gt;&lt;br&gt;Componente responsável pela definição dos testes de domínio" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b0e3e6;strokeColor=#0e8088;" vertex="1" parent="1">
           <mxGeometry x="-60" y="380" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="L1pQG9SzD1JG3cpCIFBJ-1" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-80" y="350" as="sourcePoint" />
+            <mxPoint x="610" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L1pQG9SzD1JG3cpCIFBJ-2" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-70" y="510" as="sourcePoint" />
+            <mxPoint x="605" y="510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L1pQG9SzD1JG3cpCIFBJ-3" value="Presentation&lt;br&gt;layer" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="530" y="270" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="L1pQG9SzD1JG3cpCIFBJ-4" value="Domain&lt;br&gt;layer" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="545" y="410" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="L1pQG9SzD1JG3cpCIFBJ-5" value="Infrastructure&lt;br&gt;layer" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="530" y="590" width="90" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
