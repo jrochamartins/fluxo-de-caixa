@@ -3,5 +3,5 @@ dotnet dev-certs https --trust
 
 docker-compose up -d
 
-set /p DUMMY=Hit ENTER to continue...
+set /p DUMMY=Hit ENTER to finish containers and exit...
 docker-compose down
