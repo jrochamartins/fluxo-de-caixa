@@ -33,6 +33,8 @@ namespace FluxoDeCaixa.Domain.Tests
 
             //Assert
             await CheckOperationWithInvalidEntry(invalidEntry, 1);
+            _notifier.GetNotifications().FirstOrDefault()?.Message
+                .Should().NotBeEmpty();
         }        
 
         [Fact]

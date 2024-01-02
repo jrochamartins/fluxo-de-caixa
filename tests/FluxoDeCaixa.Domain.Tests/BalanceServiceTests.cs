@@ -1,3 +1,4 @@
+using FluentAssertions;
 using FluxoDeCaixa.Domain.Abstractions.Repositories;
 using FluxoDeCaixa.Domain.Models;
 using FluxoDeCaixa.Domain.Notifications;
@@ -12,26 +13,29 @@ namespace FluxoDeCaixa.Domain.Tests
         private readonly BalanceService _balanceService;
         private readonly IBalanceRepository _balanceRepositoryMock;
 
-        private static readonly Entry _newEntry = new() { Description = "Test", Date = DateTime.Now, Value = 5, };
-        private readonly Balance _existingBalance = new() { Credits = 50, Debts = 25, Date = DateOnly.FromDateTime(_newEntry.Date) };
+        private readonly Entry _entry;
+        private readonly Balance _existingBalance;
 
         public BalanceServiceTests()
         {
+            _entry = new Entry { Description = "Test", Date = DateTime.Now, Value = 5, };
+            _existingBalance = new Balance { Credits = 50, Debts = 25, Date = DateOnly.FromDateTime(_entry.Date) };
+
             _balanceRepositoryMock = Substitute.For<IBalanceRepository>();
             _balanceService = new BalanceService(_notifier, _balanceRepositoryMock);
         }
 
         [Fact]
-        public async Task CalculateAsync_NewBalance_WithCreditEntry_Should_HasCreditValues()
+        public async Task CalculateAsync_WithValidCreditEntryAndNewBalance_Should_SuccessWithCallRepository()
         {
             //Arrange
-            _newEntry.EntryType = EntryType.Credit;
+            _entry.EntryType = EntryType.Credit;
             _balanceRepositoryMock
                 .GetByDateAsync(_existingBalance.Date)
                 .Returns((Balance?)null);
 
             // Act
-            await _balanceService.CalculateAsync(_newEntry);
+            await _balanceService.CalculateAsync(_entry);
 
             // Assert
             await _balanceRepositoryMock
@@ -44,16 +48,16 @@ namespace FluxoDeCaixa.Domain.Tests
         }
 
         [Fact]
-        public async Task CalculateAsync_WithCreditEntry_Should_HasCreditValues()
+        public async Task CalculateAsync_WithValidCreditEntryAndExistingBalance_Should_SuccessWithCallRepository()
         {
             //Arrange            
-            _newEntry.EntryType = EntryType.Credit;
+            _entry.EntryType = EntryType.Credit;
             _balanceRepositoryMock
                 .GetByDateAsync(_existingBalance.Date)
                 .Returns(_existingBalance);
 
             // Act
-            await _balanceService.CalculateAsync(_newEntry);
+            await _balanceService.CalculateAsync(_entry);
 
             // Assert
             await _balanceRepositoryMock
@@ -66,16 +70,16 @@ namespace FluxoDeCaixa.Domain.Tests
         }
 
         [Fact]
-        public async Task CalculateAsync_NewBalance_WithDebtEntry_Should_HasDebtValues()
+        public async Task CalculateAsync_WithValidDebtEntryAndNewBalance_Should_SuccessWithCallRepository()
         {
             //Arrange
-            _newEntry.EntryType = EntryType.Debt;
+            _entry.EntryType = EntryType.Debt;
             _balanceRepositoryMock
                 .GetByDateAsync(_existingBalance.Date)
                 .Returns((Balance?)null);
 
             // Act
-            await _balanceService.CalculateAsync(_newEntry);
+            await _balanceService.CalculateAsync(_entry);
 
             // Assert
             await _balanceRepositoryMock
@@ -88,16 +92,16 @@ namespace FluxoDeCaixa.Domain.Tests
         }
 
         [Fact]
-        public async Task CalculateAsync_WithDebtEntry_Should_HasDebtValues()
+        public async Task CalculateAsync_WithValidDebtEntryAndExistingBalance_Should_SuccessWithCallRepository()
         {
             //Arrange            
-            _newEntry.EntryType = EntryType.Debt;
+            _entry.EntryType = EntryType.Debt;
             _balanceRepositoryMock
                 .GetByDateAsync(_existingBalance.Date)
                 .Returns(_existingBalance);
 
             // Act
-            await _balanceService.CalculateAsync(_newEntry);
+            await _balanceService.CalculateAsync(_entry);
 
             // Assert
             await _balanceRepositoryMock
@@ -107,6 +111,21 @@ namespace FluxoDeCaixa.Domain.Tests
                                                 && b.Debts == 30
                                                 && b.Value == 20
                                                 && b.Date == _existingBalance.Date));
+        }
+
+        [Fact]
+        public async Task CalculateAsync_WithInvalidEntry_Should_HasNotificationErrors()
+        {
+            //Arrange            
+            _entry.EntryType = default;
+            _entry.Description = string.Empty;
+          
+            // Act
+            await _balanceService.CalculateAsync(_entry);
+
+            // Assert
+            _notifier.HasNotifications().Should().BeTrue();
+
         }
     }
 }
