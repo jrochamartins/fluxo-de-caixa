@@ -1,0 +1,204 @@
+<mxfile host="Electron" modified="2024-01-02T21:23:38.005Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="bkBls7d2QK7XAR5jvguW" version="22.1.16" type="device" pages="2">
+  <diagram name="Dependencias" id="lh5CfPEjWZGKf_8GbTHD">
+    <mxGraphModel dx="2901" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ZmnDn0bVMC0EXwRuv4WD-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZmnDn0bVMC0EXwRuv4WD-1" target="ZmnDn0bVMC0EXwRuv4WD-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmnDn0bVMC0EXwRuv4WD-1" value="&lt;b&gt;FluxoDecaixa.Api&lt;/b&gt;&lt;br&gt;[Component: .NET 8.0]&lt;br&gt;&lt;br&gt;Serviço de API para fluxo de caixa" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="182" y="240" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmnDn0bVMC0EXwRuv4WD-2" value="&lt;b&gt;FluxoDecaixa.Domain&lt;/b&gt;&lt;br&gt;[Component: .NET 8.0]&lt;br&gt;&lt;br&gt;Definições e regras de domínio para o projeto" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="182" y="380" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmnDn0bVMC0EXwRuv4WD-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZmnDn0bVMC0EXwRuv4WD-3" target="ZmnDn0bVMC0EXwRuv4WD-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmnDn0bVMC0EXwRuv4WD-3" value="&lt;b&gt;FluxoDecaixa.Data&lt;/b&gt;&lt;br&gt;[Component: .NET 8.0]&lt;br&gt;&lt;br&gt;Componente responsável pela persistencia de dados usando banco de dados MongoDB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="70" y="560" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmnDn0bVMC0EXwRuv4WD-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZmnDn0bVMC0EXwRuv4WD-6" target="ZmnDn0bVMC0EXwRuv4WD-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmnDn0bVMC0EXwRuv4WD-6" value="&lt;b&gt;FluxoDecaixa.Queue&lt;/b&gt;&lt;br&gt;[Component: .NET 8.0]&lt;br&gt;&lt;br&gt;Componente responsável pela interface com sistema de mensageria RabbitMQ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="300" y="560" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmnDn0bVMC0EXwRuv4WD-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZmnDn0bVMC0EXwRuv4WD-13" target="ZmnDn0bVMC0EXwRuv4WD-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmnDn0bVMC0EXwRuv4WD-13" value="&lt;b&gt;FluxoDeCaixa.Domain.Tests&lt;/b&gt;&lt;br&gt;[Component: .NET 8.0]&lt;br&gt;&lt;br&gt;Componente responsável pela definição dos testes de domínio" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b0e3e6;strokeColor=#0e8088;" vertex="1" parent="1">
+          <mxGeometry x="-60" y="380" width="210" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="nCBEBpeRTZftJHN1eGEo" name="Fluxo">
+    <mxGraphModel dx="2074" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-48" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="69" y="370" width="730" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LTQ_wq-6zNQzz8wMexiz-2" target="LTQ_wq-6zNQzz8wMexiz-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="430" />
+              <mxPoint x="310" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;curved=0;" edge="1" parent="1" source="LTQ_wq-6zNQzz8wMexiz-2" target="LTQ_wq-6zNQzz8wMexiz-28">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="520" />
+              <mxPoint x="640" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-50" value="Consulta&lt;br&gt;Balanço&lt;br&gt;diário" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="LTQ_wq-6zNQzz8wMexiz-36">
+          <mxGeometry x="-0.0057" y="5" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-2" value="FluxoDeCaixa.Api" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="380" width="710" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="LTQ_wq-6zNQzz8wMexiz-3" target="LTQ_wq-6zNQzz8wMexiz-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="254" y="330" as="sourcePoint" />
+            <mxPoint x="260" y="390" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="259" y="350" />
+              <mxPoint x="259" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-19" value="Inserir lançamento" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="LTQ_wq-6zNQzz8wMexiz-4">
+          <mxGeometry x="0.0313" y="3" relative="1" as="geometry">
+            <mxPoint x="-2" y="14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-3" value="" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="244" y="260" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LTQ_wq-6zNQzz8wMexiz-6" target="LTQ_wq-6zNQzz8wMexiz-13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="550" />
+              <mxPoint x="180" y="550" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-45" value="Posta lançamento" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="LTQ_wq-6zNQzz8wMexiz-31">
+          <mxGeometry x="0.1568" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LTQ_wq-6zNQzz8wMexiz-6" target="LTQ_wq-6zNQzz8wMexiz-11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="550" />
+              <mxPoint x="430" y="550" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-46" value="Salva lançamento" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="LTQ_wq-6zNQzz8wMexiz-32">
+          <mxGeometry x="-0.027" relative="1" as="geometry">
+            <mxPoint x="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-6" value="FluxoDeCaixa.Domain" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="230" y="460" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LTQ_wq-6zNQzz8wMexiz-11" target="LTQ_wq-6zNQzz8wMexiz-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="760" />
+              <mxPoint x="420" y="760" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-11" value="FluxoDeCaixa.Data&lt;br&gt;&lt;i&gt;Repositórios&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="330" y="585" width="151" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LTQ_wq-6zNQzz8wMexiz-13" target="LTQ_wq-6zNQzz8wMexiz-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="710" />
+              <mxPoint x="170" y="710" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-13" value="FluxoDeCaixa.Queue&lt;br&gt;&lt;i&gt;QueuePublisher&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="110" y="585" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LTQ_wq-6zNQzz8wMexiz-15" target="LTQ_wq-6zNQzz8wMexiz-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-15" value="MongoDB&lt;br&gt;&lt;i&gt;Externo&lt;/i&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="390" y="880" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LTQ_wq-6zNQzz8wMexiz-17" target="LTQ_wq-6zNQzz8wMexiz-26">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="925" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-49" value="Recebe&amp;nbsp;&lt;br&gt;lançamento" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="LTQ_wq-6zNQzz8wMexiz-30">
+          <mxGeometry x="-0.0235" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-17" value="RabbitMQ&lt;br&gt;&lt;i&gt;Externo&lt;/i&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="130" y="890" width="100" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-20" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.593;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="LTQ_wq-6zNQzz8wMexiz-48">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="840" as="sourcePoint" />
+            <mxPoint x="500" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-21" value="Command Stack" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="90" y="420" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LTQ_wq-6zNQzz8wMexiz-22" target="LTQ_wq-6zNQzz8wMexiz-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="625" y="350" />
+              <mxPoint x="625" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-25" value="Consutar Consolidado" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="LTQ_wq-6zNQzz8wMexiz-24">
+          <mxGeometry x="0.0425" relative="1" as="geometry">
+            <mxPoint x="1" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-22" value="" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="610" y="260" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="LTQ_wq-6zNQzz8wMexiz-26" target="LTQ_wq-6zNQzz8wMexiz-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-41" value="Converte lançamento&lt;br&gt;em registro de&lt;br&gt;balanço e salva" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="LTQ_wq-6zNQzz8wMexiz-35">
+          <mxGeometry x="-0.4545" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-26" value="FluxoDeCaixa.Queue&lt;br&gt;&lt;i&gt;QueueSubscriber&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="210" y="730" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-28" value="FluxoDeCaixa.Data&lt;br&gt;&lt;i&gt;Repositório de balanço diário&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="570" y="585" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LTQ_wq-6zNQzz8wMexiz-38" value="Query Stack" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="700" y="420" width="90" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

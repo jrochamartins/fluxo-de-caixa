@@ -22,7 +22,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Queue", "src\F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E7551346-527C-42E4-8B0D-DAC4E7AE3D1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoDeCaixa.Domain.Tests", "tests\FluxoDeCaixa.Domain.Tests\FluxoDeCaixa.Domain.Tests.csproj", "{9AF0D7BF-B5D7-46AA-892F-FB0502B99CFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoDeCaixa.Domain.Tests", "tests\FluxoDeCaixa.Domain.Tests\FluxoDeCaixa.Domain.Tests.csproj", "{9AF0D7BF-B5D7-46AA-892F-FB0502B99CFD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{05E5860B-A6E0-4398-9A04-90B34C330BF6}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
