@@ -7,10 +7,12 @@ EXPOSE 5001
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
-WORKDIR src
+
+WORKDIR "./src"
 COPY . .
 RUN dotnet restore
-WORKDIR "src/FluxoDeCaixa.Api"
+
+WORKDIR "./src/FluxoDeCaixa.Api"
 RUN dotnet build "FluxoDeCaixa.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
