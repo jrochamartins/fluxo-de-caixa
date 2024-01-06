@@ -13,17 +13,17 @@ namespace FluxoDeCaixa.Domain.Tests
         private readonly Notifier _notifier = new();
         private readonly EntriesService _entriesService;
         private readonly IEntriesRepository _entriesRepositoryMock;
-        private readonly IQueuePublisher _queuePublisherMock;
+        private readonly IPublisher _queuePublisherMock;
 
         public EntriesServiceTests()
         {
             _entriesRepositoryMock = Substitute.For<IEntriesRepository>();
-            _queuePublisherMock = Substitute.For<IQueuePublisher>();
+            _queuePublisherMock = Substitute.For<IPublisher>();
             _entriesService = new EntriesService(_notifier, _entriesRepositoryMock, _queuePublisherMock);
         }
 
         [Fact]
-        public async Task CreateAsync_WithError_Should_NotContainValidDecription()
+        public async Task CreateAsync_WithError_Should_NotContainValidDescription()
         {
             // Arrange
             Entry invalidEntry = new() { Description = "A", Date = DateTime.Now, Value = 5, EntryType = EntryType.Credit };
@@ -86,13 +86,13 @@ namespace FluxoDeCaixa.Domain.Tests
                 .DidNotReceive()
                 .CreateAsync(invalidEntry);
 
-            _queuePublisherMock
+            await _queuePublisherMock
                 .DidNotReceiveWithAnyArgs()
-                .Publish(invalidEntry);
+                .PublishAsync(invalidEntry);
         }
 
         [Fact]
-        public async Task CreateAsync_WithSucess_Should_CallRepositoryAndPublisher()
+        public async Task CreateAsync_WithSuccess_Should_CallRepositoryAndPublisher()
         {
             // Arrange
             Entry newValidEntry = new() { Description = "Test", Date = DateTime.Now, Value = 5, EntryType = EntryType.Credit };
@@ -111,9 +111,9 @@ namespace FluxoDeCaixa.Domain.Tests
                                                 && e.Value == newValidEntry.Value
                                                 && e.EntryType == newValidEntry.EntryType));
 
-            _queuePublisherMock
+            await _queuePublisherMock
                 .Received(1)
-                .Publish(Arg.Is<object>(e =>
+                .PublishAsync(Arg.Is<object>(e =>
                                             e.GetType() == typeof(Entry)
                                             && ((Entry)e).Id == newValidEntry.Id
                                             && ((Entry)e).Description == newValidEntry.Description

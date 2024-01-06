@@ -8,15 +8,14 @@ namespace FluxoDeCaixa.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddHealthChecks();
-
             builder.Host.UseSerilog((context, configuration) =>
                 configuration.ReadFrom.Configuration(context.Configuration));
-
+            
             builder
                 .ConfigureDependencies()
                 .ConfigureJwtAuthentication();
-
+            builder.Services.AddHealthChecks();
+            
             var app = builder.Build();
             if (app.Environment.IsDevelopment())
             {
@@ -28,8 +27,6 @@ namespace FluxoDeCaixa.Api
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
-
-            app.UseRabbitListener();
             app.MapHealthChecks("/health");
 
             app.Run();

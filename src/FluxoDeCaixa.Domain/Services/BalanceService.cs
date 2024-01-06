@@ -15,9 +15,9 @@ namespace FluxoDeCaixa.Domain.Services
 
             var date = DateOnly.FromDateTime(entry.Date);
 
-            var balance = 
-                await balanceRepository.GetByDateAsync(date) ?? 
-                new Balance() { Date = date };
+            var balance =
+                await balanceRepository.GetByDateAsync(date) ??
+                new Balance { Date = date };
 
             switch (entry.EntryType)
             {
@@ -27,9 +27,11 @@ namespace FluxoDeCaixa.Domain.Services
                 case EntryType.Debt:
                     balance.Debts += entry.Value;
                     break;
+                default:
+                    return;
             }
 
-            await balanceRepository.SaveAsync(balance);            
+            await balanceRepository.SaveAsync(balance);
         }
     }
 }

@@ -7,7 +7,7 @@ using FluxoDeCaixa.Domain.Validators;
 
 namespace FluxoDeCaixa.Domain.Services
 {
-    public class EntriesService(INotifier notifier, IEntriesRepository repository, IQueuePublisher publisher) : BaseService(notifier), IEntriesService
+    public class EntriesService(INotifier notifier, IEntriesRepository repository, IPublisher publisher) : BaseService(notifier), IEntriesService
     {
         public async Task CreateAsync(Entry entry)
         {
@@ -16,7 +16,7 @@ namespace FluxoDeCaixa.Domain.Services
 
             await repository.CreateAsync(entry);
 
-            publisher.Publish(entry);
+            await publisher.PublishAsync(entry);
         }
     }
 }

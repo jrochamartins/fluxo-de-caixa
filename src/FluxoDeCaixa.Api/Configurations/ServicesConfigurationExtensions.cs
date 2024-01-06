@@ -7,7 +7,7 @@ using FluxoDeCaixa.Domain.Abstractions.Services;
 using FluxoDeCaixa.Domain.Notifications;
 using FluxoDeCaixa.Domain.Services;
 using FluxoDeCaixa.Queue;
-using FluxoDeCaixa.Queue.Handlers;
+using MassTransit;
 
 namespace FluxoDeCaixa.Api.Configurations
 {
@@ -26,24 +26,32 @@ namespace FluxoDeCaixa.Api.Configurations
 
             // Options
             builder.Services.Configure<DbContextOptions>(builder.Configuration);
-            builder.Services.Configure<QueueContextOptions>(builder.Configuration);
 
             // Infra
             builder.Services.AddScoped<INotifier, Notifier>();
             builder.Services.AddSingleton<DbContext>();
-            builder.Services.AddSingleton<QueueContext>();
-            builder.Services.AddSingleton<IQueueSubscriber, QueueSubscriber>();
 
             //UseCases Dependencies
             // Add Entry
             builder.Services.AddScoped<IEntriesService, EntriesService>();
             builder.Services.AddScoped<IEntriesRepository, EntriesRepository>();
-            builder.Services.AddScoped<IQueuePublisher, QueuePublisher>();
+            builder.Services.AddScoped<IPublisher, Publisher>();
 
             // Create Balance
-            builder.Services.AddScoped<EntryQueueHandler>();
             builder.Services.AddScoped<IBalanceService, BalanceService>();
             builder.Services.AddScoped<IBalanceRepository, BalanceRepository>();
+
+            //Queues
+            builder.Services.AddMassTransit(busConfigurator =>
+            {
+                busConfigurator.SetKebabCaseEndpointNameFormatter();
+                busConfigurator.AddConsumer<EntryConsumer>();
+                busConfigurator.UsingRabbitMq((context, configurator) =>
+                {
+                    configurator.Host(builder.Configuration["RABBITMQ_HOST"], "/");
+                    configurator.ConfigureEndpoints(context);
+                });
+            });
 
             return builder;
         }
