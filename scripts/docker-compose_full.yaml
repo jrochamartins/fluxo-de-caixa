@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+    webapp:
+        image: fluxodecaixaapi:dev
+        restart: on-failure
+        build:
+            context: ..
+            dockerfile: ./scripts/Dockerfile
+        ports:
+            - 5000:5000
+            - 5001:5001
+        depends_on:
+            mongodb:
+                condition: service_healthy
+            rabbitmq:
+                condition: service_healthy
+        environment:
+            # https://learn.microsoft.com/pt-br/aspnet/core/security/docker-compose-https?view=aspnetcore-8.0
+            ASPNETCORE_ENVIRONMENT: Development
+            ASPNETCORE_URLS: https://+:5001;http://+:5000
+            ASPNETCORE_Kestrel__Certificates__Default__Password: 3346669e-5d67-4312-8001-d47eac475851
+            ASPNETCORE_Kestrel__Certificates__Default__Path: /https/fluxodecaixaapi.pfx
+            MONGO_CONNECTION_STRING: mongodb://mongodb:27017
+            MONGO_DATABASE: CASH-FLOW            
+            RABBITMQ_HOST: rabbitmq
+            JWT_KEY: B5BF91AD-67B5-4D10-9315-3B0AEF4FADD9
+            JWT_USER: admin
+        volumes:
+            - ~/.aspnet/https:/https:ro
+
+    mongodb:
+        image: mongo:latest
+        healthcheck:
+            test: ["CMD","mongosh", "--eval", "db.adminCommand('ping')"]
+            interval: 1s
+            timeout: 10s
+            retries: 10
+        # environment:
+        #     MONGO_INITDB_ROOT_USERNAME: root
+        #     MONGO_INITDB_ROOT_PASSWORD: example
+        ports:
+            - 27017:27017
+
+    rabbitmq:
+        image: masstransit/rabbitmq:latest
+        healthcheck:
+            test: [ "CMD", "rabbitmqctl", "status" ]
+            interval: 1s
+            timeout: 10s
+            retries: 10
+        # environment:
+        #     RABBITMQ_DEFAULT_USER: guest
+        #     RABBITMQ_DEFAULT_PASS: guest
+        ports:
+            - 5672:5672
+            - 15672:15672

@@ -1,13 +1,15 @@
 ﻿using FluxoDeCaixa.Domain.Abstractions.Adapters;
 using MassTransit;
+using Microsoft.Extensions.Logging;
 
 namespace FluxoDeCaixa.Queue
 {
-    public class Publisher(IPublishEndpoint bus) : IPublisher
+    public class Publisher(IPublishEndpoint bus, ILogger<Publisher> logger) : IPublisher
     {
-        public async Task PublishAsync<T>(T message)
+        public Task PublishAsync<T>(T message)
         {
-            if (message != null) await bus.Publish(message);
+            logger.LogInformation("Publisher.PublishAsync started");
+            return bus.Publish(message!);
         }
     }
 }

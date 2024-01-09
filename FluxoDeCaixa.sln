@@ -13,7 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{E559
 	ProjectSection(SolutionItems) = preProject
 		scripts\docker-compose.yaml = scripts\docker-compose.yaml
 		scripts\Dockerfile = scripts\Dockerfile
+		scripts\docker-compose_full.yaml = scripts\docker-compose_full.yaml
 		scripts\start.bat = scripts\start.bat
+		scripts\start_full.bat = scripts\start_full.bat
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3DD2E2AC-9C97-4C37-972E-125D4DE0CA33}"
