@@ -5,6 +5,9 @@ namespace FluxoDeCaixa.Queue
 {
     public class Publisher(IPublishEndpoint bus) : IPublisher
     {
-        public async Task PublishAsync(object message) => await bus.Publish(message);
+        public async Task PublishAsync<T>(T message)
+        {
+            if (message != null) await bus.Publish(message);
+        }
     }
 }
