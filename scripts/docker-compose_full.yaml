@@ -33,7 +33,7 @@ services:
         image: mongo:latest
         healthcheck:
             test: ["CMD","mongosh", "--eval", "db.adminCommand('ping')"]
-            interval: 1s
+            interval: 3s
             timeout: 10s
             retries: 10
         # environment:
@@ -46,7 +46,7 @@ services:
         image: masstransit/rabbitmq:latest
         healthcheck:
             test: [ "CMD", "rabbitmqctl", "status" ]
-            interval: 1s
+            interval: 3s
             timeout: 10s
             retries: 10
         # environment:

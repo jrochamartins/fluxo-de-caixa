@@ -5,7 +5,7 @@ services:
         image: mongo:latest
         healthcheck:
             test: ["CMD","mongosh", "--eval", "db.adminCommand('ping')"]
-            interval: 1s
+            interval: 3s
             timeout: 10s
             retries: 10
         # environment:
