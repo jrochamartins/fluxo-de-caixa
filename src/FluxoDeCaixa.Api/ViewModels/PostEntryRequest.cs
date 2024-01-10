@@ -5,17 +5,17 @@ namespace FluxoDeCaixa.Api.ViewModels
 {
     public class PostEntryRequest
     {
-        public DateTime? Date { get; set; } = DateTime.Now;
+        public DateTime? Date { get; init; } = DateTime.Now;
 
         [Required]
-        public EntryType EntryType { get; set; }
+        public EntryType EntryType { get; init; }
 
         [Required]
         [StringLength(200, MinimumLength = 2)]
-        public string? Description { get; set; }
+        public string? Description { get; init; }
 
         [Required]
         [DecimalGreaterThan(0)]
-        public double Value { get; set; }
+        public double Value { get; init; }
     }
 }

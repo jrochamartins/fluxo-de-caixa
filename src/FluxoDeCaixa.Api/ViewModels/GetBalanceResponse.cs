@@ -2,12 +2,12 @@
 {
     public class GetBalanceResponse
     {
-        public DateOnly Date { get; set; }
+        public DateOnly Date { get; init; }
 
-        public decimal Credits { get; set; }
+        public decimal Credits { get; init; }
 
-        public decimal Debts { get; set; }
+        public decimal Debts { get; init; }
 
-        public decimal Value { get; set; }
+        public decimal Value { get; init; }
     }
 }

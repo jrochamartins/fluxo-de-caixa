@@ -5,6 +5,6 @@ namespace FluxoDeCaixa.Api.ViewModels
     public class PostLoginRequest
     {
         [Required]
-        public string? User { get; set; }
+        public string? User { get; init; }
     }
 }

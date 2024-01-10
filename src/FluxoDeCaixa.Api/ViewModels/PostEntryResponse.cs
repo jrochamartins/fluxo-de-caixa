@@ -2,6 +2,6 @@
 {
     public class PostEntryResponse : PostEntryRequest
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
     }
 }
