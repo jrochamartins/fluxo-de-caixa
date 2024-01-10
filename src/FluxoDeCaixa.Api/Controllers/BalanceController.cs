@@ -9,7 +9,7 @@ namespace FluxoDeCaixa.Api.Controllers
     [Route("[controller]")]
     public class BalanceController(INotifier notifier, IBalanceRepository balanceRepository, IMapper mapper, ILogger<BalanceController> logger) : MainController(notifier)
     {
-        [HttpGet()]
+        [HttpGet]
         public async Task<ActionResult<GetBalanceResponse>> Get([FromQuery] GetBalanceResquest request)
         {
             logger.LogInformation("HTTP GET /Balance started");

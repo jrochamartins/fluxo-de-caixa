@@ -4,9 +4,9 @@ using FluxoDeCaixa.Domain.Models;
 
 namespace FluxoDeCaixa.Api.Configurations
 {
-    public class AutoMapperConfig : Profile
+    public class AutoMapperProfile : Profile
     {
-        public AutoMapperConfig()
+        public AutoMapperProfile()
         {
             CreateMap<PostEntryRequest, Entry>();
             CreateMap<Entry, PostEntryResponse>();

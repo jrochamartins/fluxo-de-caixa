@@ -3,31 +3,40 @@ using Serilog;
 
 namespace FluxoDeCaixa.Api
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Host.UseSerilog((context, configuration) =>
-                configuration.ReadFrom.Configuration(context.Configuration));
+
+            builder.Services
+                .AddControllers()
+                .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
             
-            builder
-                .ConfigureDependencies()
-                .ConfigureJwtAuthentication();
-            builder.Services.AddHealthChecks();
+            builder.Services
+                .AddHealthChecks();
+
+            builder.AddDomainDependencies();
+            builder.AddJwtAuthentication();
+            builder.AddAddAutoMapper();
+            builder.AddMassTransit();
+            builder.AddSwaggerGen();
+            builder.AddSerilog();
             
             var app = builder.Build();
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }            
+
             app.UseSerilogRequestLogging();
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
             app.MapHealthChecks("/health");
+
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
             app.Run();
         }
