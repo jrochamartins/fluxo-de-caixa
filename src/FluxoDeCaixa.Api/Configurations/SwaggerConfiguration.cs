@@ -6,6 +6,7 @@ namespace FluxoDeCaixa.Api.Configurations
     {
         public static WebApplicationBuilder AddSwaggerGen(this WebApplicationBuilder builder)
         {
+            builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Cash Flow API", Version = "v1" });

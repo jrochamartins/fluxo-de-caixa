@@ -1,4 +1,5 @@
 using FluxoDeCaixa.Api.Configurations;
+using FluxoDeCaixa.Api.Controllers;
 using Serilog;
 
 namespace FluxoDeCaixa.Api
@@ -30,6 +31,8 @@ namespace FluxoDeCaixa.Api
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
+            app.MapLoginEndpoints();
+
             app.MapHealthChecks("/health");
 
             if (app.Environment.IsDevelopment())
