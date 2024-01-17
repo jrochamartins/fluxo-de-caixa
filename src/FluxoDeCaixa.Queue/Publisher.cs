@@ -8,7 +8,8 @@ namespace FluxoDeCaixa.Queue
     {
         public Task PublishAsync<T>(T message)
         {
-            logger.LogInformation("Publisher.PublishAsync started");
+            logger.LogInformation("{Object}.{Method} started", nameof(Publisher), nameof(PublishAsync));
+
             return bus.Publish(message!);
         }
     }

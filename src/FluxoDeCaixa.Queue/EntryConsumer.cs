@@ -10,7 +10,8 @@ namespace FluxoDeCaixa.Queue
     {
         public Task Consume(ConsumeContext<Entry> context)
         {
-            logger.LogInformation("EntryConsumer.Consume started");
+            logger.LogInformation("{Object}.{Method} started", nameof(EntryConsumer), nameof(Consume));
+
             return balanceService.CalculateAsync(context.Message);
         }
     }

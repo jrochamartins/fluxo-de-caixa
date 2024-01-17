@@ -1,4 +1,5 @@
 using FluxoDeCaixa.Api.Configurations;
+using FluxoDeCaixa.Api.Middlewares;
 using Serilog;
 
 namespace FluxoDeCaixa.Api
@@ -25,19 +26,20 @@ namespace FluxoDeCaixa.Api
             
             var app = builder.Build();
 
-            app.UseSerilogRequestLogging();
-            app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseAuthorization();
-            app.MapControllers();
-            app.MapHealthChecks("/health");
-
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
 
+            app.UseMiddleware<RequestLogContextMiddleware>();
+            app.UseSerilogRequestLogging();
+            app.UseHttpsRedirection();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.MapControllers();
+            app.MapHealthChecks("/health");
+            
             app.Run();
         }
     }

@@ -6,11 +6,12 @@ using MongoDB.Driver;
 
 namespace FluxoDeCaixa.Data.Repositories
 {
-    public class BalanceRepository(DbContext context, ILogger<BalanceRepository> _logger) : IBalanceRepository
+    public class BalanceRepository(DbContext context, ILogger<BalanceRepository> logger) : IBalanceRepository
     {
         public async Task<Balance?> GetByDateAsync(DateOnly date)
         {
-            _logger.LogInformation("BalanceRepository.GetByDateAsync started");
+            logger.LogInformation("{Object}.{Method} started", nameof(BalanceRepository), nameof(GetByDateAsync));
+
             var filter = Builders<Balance>.Filter.Eq(e => e.Date, date);
             var result =  await context.DailyBalances.FindAsync(filter);
             return result.FirstOrDefault();
@@ -18,7 +19,8 @@ namespace FluxoDeCaixa.Data.Repositories
 
         public async Task SaveAsync(Balance balance)
         {
-            _logger.LogInformation("BalanceRepository.SaveAsync started");
+            logger.LogInformation("{Object}.{Method} started", nameof(BalanceRepository), nameof(SaveAsync));
+
             var filter = Builders<Balance>.Filter.Eq(e => e.Id, balance.Id);
             var options = new ReplaceOptions() { IsUpsert = true };
             var result = await context.DailyBalances.ReplaceOneAsync(filter, balance, options);

@@ -9,13 +9,14 @@ using System.Net;
 namespace FluxoDeCaixa.Api.Controllers
 {
     [Route("[controller]")]
-    public class EntriesController(INotifier notifier, IMapper mapper, IEntriesService entriesService, ILogger<EntriesController> logger) : MainController(notifier)
+    public class EntriesController(
+        IMapper mapper,
+        INotifier notifier,
+        IEntriesService entriesService) : MainController(notifier)
     {
         [HttpPost]
         public async Task<ActionResult<PostEntryResponse>> Post([FromBody] PostEntryRequest request)
         {
-            logger.LogInformation("HTTP POST /Entries started");
-
             if (!ModelState.IsValid)
                 return CustomResponse(ModelState);
 

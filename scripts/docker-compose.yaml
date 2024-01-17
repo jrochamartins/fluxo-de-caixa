@@ -27,3 +27,11 @@ services:
         ports:
             - 5672:5672
             - 15672:15672
+
+    seq:
+        image: datalust/seq:latest
+        environment:
+            - ACCEPT_EULA=Y
+        ports:
+            - 5341:5341
+            - 8081:80

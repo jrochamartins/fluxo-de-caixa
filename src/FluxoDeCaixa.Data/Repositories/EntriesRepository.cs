@@ -4,11 +4,12 @@ using Microsoft.Extensions.Logging;
 
 namespace FluxoDeCaixa.Data.Repositories
 {
-    public class EntriesRepository(DbContext context, ILogger<EntriesRepository> _logger) : IEntriesRepository
+    public class EntriesRepository(DbContext context, ILogger<EntriesRepository> logger) : IEntriesRepository
     {
         public async Task CreateAsync(Entry entity)
         {
-            _logger.LogInformation("EntriesRepository.CreateAsync started");
+            logger.LogInformation("{Object}.{Method} started", nameof(EntriesRepository), nameof(CreateAsync));
+            
             await context.Entries.InsertOneAsync(entity);
         }
     }
